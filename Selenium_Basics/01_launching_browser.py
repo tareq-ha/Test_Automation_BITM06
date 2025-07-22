@@ -1,8 +1,26 @@
 from selenium import webdriver
+import time, random
 
-browsers = ["Chrome", "Firefox","Edge"]
-# driver = webdriver.Firefox()
-driver = webdriver.Chrome()
-# driver.close()
-driver.quit()
+
+# driver = webdriver.Chrome()
+# driver.maximize_window()
+#
+# driver.get("http://google.com")
+# driver.quit()
+
+
+browsers = ["Chrome", "Chrome",  "Chrome",  "Chrome",  "Chrome", "Firefox", "Edge"]
+uri_list = ["https://google.com", "https://yahoo.com","https://nasa.gov", "https://prothomalo.com", "https://facebook.com"]
+
+for browser_item in browsers:
+    functionToCall=getattr(webdriver, browser_item)
+    # functionToCall=getattr(webdriver, browser_item)
+    # driver= functionToCall()
+    driver=getattr(webdriver, browser_item)()
+    driver.maximize_window()
+    random_uri = random.choice(uri_list)
+    driver.get(random_uri)
+    time.sleep(2)
+    driver.quit()
+
 
