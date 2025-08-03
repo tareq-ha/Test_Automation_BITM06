@@ -13,14 +13,17 @@ browsers = ["Chrome", "Chrome",  "Chrome",  "Chrome",  "Chrome", "Firefox", "Edg
 uri_list = ["https://google.com", "https://yahoo.com","https://nasa.gov", "https://prothomalo.com", "https://facebook.com"]
 
 for browser_item in browsers:
-    functionToCall=getattr(webdriver, browser_item)
-    # functionToCall=getattr(webdriver, browser_item)
-    # driver= functionToCall()
-    driver=getattr(webdriver, browser_item)()
-    driver.maximize_window()
-    random_uri = random.choice(uri_list)
-    driver.get(random_uri)
-    time.sleep(2)
-    driver.quit()
+    try:
+        functionToCall=getattr(webdriver, browser_item)
+        # functionToCall=getattr(webdriver, browser_item)
+        # driver= functionToCall()
+        driver=getattr(webdriver, browser_item)()
+        driver.maximize_window()
+        random_uri = random.choice(uri_list)
+        driver.get(random_uri)
+        time.sleep(2)
+        driver.quit()
+    except Exception as e:
+        print("The error is: ", e)
 
 
